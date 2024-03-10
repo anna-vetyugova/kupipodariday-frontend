@@ -13,7 +13,7 @@ const headersWithAuthorizeFn = () => ({
   "Content-Type": "application/json",
   authorization: `Bearer ${sessionStorage.getItem("auth_token")}`,
 });
-
+//+
 export const registerUser = (userData) => {
   return fetch(`${URL}/signup/`, {
     method: "POST",
@@ -21,7 +21,7 @@ export const registerUser = (userData) => {
     body: JSON.stringify(userData),
   }).then(checkResponse);
 };
-
+//+
 export const loginUser = (username, password) => {
   return fetch(`${URL}/signin/`, {
     method: "POST",
@@ -47,6 +47,7 @@ export const refreshAndSet = (method, contextSetter) => {
   method().then(contextSetter);
 };
 
+//+
 export const getOwnUser = () => {
   return fetch(`${URL}/users/me/`, {
     method: "GET",
@@ -62,6 +63,7 @@ export const refreshUser = (contextSetter) => {
   }
 };
 
+//+
 export const updateProfile = (user) => {
   return fetch(`${URL}/users/me/`, {
     method: "PATCH",
@@ -70,6 +72,7 @@ export const updateProfile = (user) => {
   }).then(checkResponse);
 };
 
+//+
 export const getCards = (page = 1) => {
   return fetch(`${URL}/wishes/`, {
     method: "GET",
@@ -77,6 +80,7 @@ export const getCards = (page = 1) => {
   }).then(checkResponse);
 };
 
+//+
 export const getOwnWishes = () => {
   return fetch(`${URL}/users/me/wishes`, {
     method: "GET",
@@ -84,6 +88,7 @@ export const getOwnWishes = () => {
   }).then(checkResponse);
 };
 
+//+
 export const getAnotherUserWishes = (username) => {
   return fetch(`${URL}/users/${username}/wishes`, {
     method: "GET",
@@ -91,6 +96,7 @@ export const getAnotherUserWishes = (username) => {
   }).then(checkResponse);
 };
 
+//+
 export const getAnotherUser = (username) => {
   return fetch(`${URL}/users/${username}`, {
     method: "GET",
@@ -98,6 +104,7 @@ export const getAnotherUser = (username) => {
   }).then(checkResponse);
 };
 
+//+
 export const queryUser = (query) => {
   return fetch(`${URL}/users/find`, {
     method: "POST",
@@ -106,6 +113,7 @@ export const queryUser = (query) => {
   }).then(checkResponse);
 };
 
+//+
 export const removeWish = (id) => {
   return fetch(`${URL}/wishes/${id}`, {
     method: "DELETE",
@@ -121,6 +129,7 @@ export const addOffer = (offer) => {
   }).then(checkResponse);
 };
 
+//+
 export const getTopCards = () => {
   return fetch(`${URL}/wishes/top`, {
     method: "GET",
@@ -128,6 +137,7 @@ export const getTopCards = () => {
   }).then(checkResponse);
 };
 
+//+
 export const getLastCards = (page = 1) => {
   return fetch(`${URL}/wishes/last`, {
     method: "GET",
@@ -135,6 +145,7 @@ export const getLastCards = (page = 1) => {
   }).then(checkResponse);
 };
 
+//+
 export const getCard = (id) => {
   return fetch(`${URL}/wishes/${id}`, {
     method: "GET",
@@ -142,6 +153,7 @@ export const getCard = (id) => {
   }).then(checkResponse);
 };
 
+//+
 export const createCard = (wish) => {
   return fetch(`${URL}/wishes`, {
     method: "POST",
@@ -158,20 +170,21 @@ export const updateCard = (card, id) => {
   }).then(checkResponse);
 };
 
+//+
 export const copyWish = (id) => {
   return fetch(`${URL}/wishes/${id}/copy`, {
     method: "POST",
     headers: headersWithAuthorizeFn(),
   }).then(checkResponse);
 };
-
+//+
 export const removeCard = (id) => {
   return fetch(`${URL}/wishes/${id}`, {
     method: "DELETE",
     headers: headersWithAuthorizeFn(),
   }).then(checkResponse);
 };
-
+//+
 export const addCollection = (data) => {
   return fetch(`${URL}/wishlistlists`, {
     method: "POST",
@@ -179,14 +192,14 @@ export const addCollection = (data) => {
     body: JSON.stringify(data),
   }).then(checkResponse);
 };
-
+//+
 export const getCollections = () => {
   return fetch(`${URL}/wishlistlists`, {
     method: "GET",
     headers: headersWithAuthorizeFn(),
   }).then(checkResponse);
 };
-
+//+
 export const getCollection = (id) => {
   return fetch(`${URL}/wishlistlists/${id}`, {
     method: "GET",
