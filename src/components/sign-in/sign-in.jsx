@@ -8,7 +8,7 @@ import { getOwnUser, loginUser } from "../../utils/api";
 import { UserContext } from "../../utils/context";
 
 import {
-  MINIMUM_USERNAME_LENGTH,
+  EMAIL_REGULAR,
   MINIMUM_PASSWORD_LENGTH,
 } from "../../utils/constants";
 
@@ -17,16 +17,16 @@ import styles from "./sign-in.module.css";
 export const SignIn = ({ extraClass = "" }) => {
   const [_userCtx, setUserCtx] = useContext(UserContext);
   const [userData, setUserData] = useState({
-    username: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const [errorMessage, setErrorMessage] = useState("");
 
   const history = useHistory();
 
-  const usernameValid = userData.username.length >= MINIMUM_USERNAME_LENGTH;
+  const emailValid = EMAIL_REGULAR.test(userData.email);
   const passwordValid = userData.password.length >= MINIMUM_PASSWORD_LENGTH;
-  const submitDisabled = !usernameValid || !passwordValid;
+  const submitDisabled = !emailValid || !passwordValid;
 
   const onChangeInput = (e) => {
     setUserData({
@@ -39,8 +39,8 @@ export const SignIn = ({ extraClass = "" }) => {
     event.preventDefault();
     errorMessage && setErrorMessage("");
     try {
-      const response = await loginUser(userData.username, userData.password);
-      if (response && response.access_token) {
+      const response = await loginUser(userData.email, userData.password);
+      if (response && response.accessToken) {
         const user = await getOwnUser();
         setUserCtx(user);
         history.replace({ pathname: "/gifts/line" });
@@ -59,25 +59,24 @@ export const SignIn = ({ extraClass = "" }) => {
       </h2>
       <form className={styles.form} onSubmit={authorizeUser}>
         <Input
-          name={"username"}
-          type="text"
+          name="email"
+          type="email"
           id={1}
-          placeholder="Введите имя пользователя"
-          label="Юзернейм"
+          placeholder="Введите email пользователя"
+          label="Email"
           onChange={onChangeInput}
           extraClass="mb-16"
-          minLength={MINIMUM_USERNAME_LENGTH}
-          required={true}
+          required
         />
         <Input
-          name={"password"}
+          name="password"
           type="password"
           id={2}
           placeholder="Введите пароль"
           label="Пароль"
           onChange={onChangeInput}
           minLength={MINIMUM_PASSWORD_LENGTH}
-          required={true}
+          required
         />
         {errorMessage && <span className={styles.error}>{errorMessage}</span>}
         <Button

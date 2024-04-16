@@ -7,7 +7,7 @@ export const MAXIMUM_USERNAME_LENGTH = 64;
 export const EMAIL_REGULAR =
   /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/;
 export const URL_REGULAR =
-  /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+  /[(http(s)?)://(www.)?a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/;
 
 export const getBase64 = (file) => {
   return new Promise((resolve, reject) => {

@@ -15,23 +15,23 @@ const headersWithAuthorizeFn = () => ({
 });
 
 export const registerUser = (userData) => {
-  return fetch(`${URL}/signup/`, {
+  return fetch(`${URL}/auth/signup/`, {
     method: "POST",
     headers: headersWithContentType,
     body: JSON.stringify(userData),
   }).then(checkResponse);
 };
 
-export const loginUser = (username, password) => {
-  return fetch(`${URL}/signin/`, {
+export const loginUser = (email, password) => {
+  return fetch(`${URL}/auth/signin/`, {
     method: "POST",
     headers: headersWithContentType,
-    body: JSON.stringify({ username, password }),
+    body: JSON.stringify({ email, password }),
   })
     .then(checkResponse)
     .then((data) => {
-      if (data.access_token) {
-        sessionStorage.setItem("auth_token", data.access_token);
+      if (data.accessToken) {
+        sessionStorage.setItem('auth_token', data.accessToken);
         return data;
       } else {
         return;
