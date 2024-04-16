@@ -193,6 +193,7 @@ const GiftAddModal = ({ onClose }) => {
           placeholder="Укажите стоимость"
           required
           min={0}
+          step={0.01}
         />
         <Button
           type="submit"
