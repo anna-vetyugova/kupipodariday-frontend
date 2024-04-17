@@ -99,10 +99,11 @@ export const getAnotherUser = (username) => {
 };
 
 export const queryUser = (query) => {
-  return fetch(`${URL}/users/find`, {
-    method: "POST",
+  var queryStr = `username=${query}&email=${query}`;
+
+  return fetch(`${URL}/users/find?${queryStr}`, {
+    method: 'GET',
     headers: headersWithAuthorizeFn(),
-    body: JSON.stringify({ query }),
   }).then(checkResponse);
 };
 
