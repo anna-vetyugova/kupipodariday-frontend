@@ -42,7 +42,7 @@ export const GiftPage = ({ extraClass = "" }) => {
     errorMessage && setErrorMessage("");
     const amount = +anotherSum || currentSupportedBtn;
     addOffer({
-      itemId: wishData.id,
+      wishId: wishData.id,
       amount,
       hidden: false,
     })
