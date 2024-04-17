@@ -138,7 +138,7 @@ const GiftAddModal = ({ onClose }) => {
     setGiftData({
       ...giftData,
       [e.target.name]:
-        e.target.name === "price" ? parseInt(e.target.value) : e.target.value,
+        e.target.name === "price" ? parseFloat(e.target.value) : e.target.value,
     });
   };
 
