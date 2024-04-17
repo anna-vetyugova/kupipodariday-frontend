@@ -33,6 +33,7 @@ export const GiftPage = ({ extraClass = "" }) => {
   }, [id]);
 
   const isRaised = wishData.raised === wishData.price;
+  const isOffers = wishData?.offers?.length > 0;
 
   const handlePopupOpen = () => {
     setIsPopupOpen(true);
@@ -141,9 +142,15 @@ export const GiftPage = ({ extraClass = "" }) => {
         <div className={styles.subtitle_box}>
           <h2 className="text text_ty-e_h2">Список поддержавших</h2>
         </div>
-        {wishData?.offers?.length ? (
-          wishData?.offers?.map(({ name, amount, createdAt }) => (
-            <UserSupportedCard name={name} amount={amount} date={createdAt} />
+        {isOffers ? (
+          wishData.offers.map(({ user, amount, createdAt }) => (
+            <UserSupportedCard
+              img={user.avatar}
+              name={user.username}
+              amount={amount}
+              date={createdAt}
+              key={createdAt}
+            />
           ))
         ) : (
           <p>Пока никого нет</p>
