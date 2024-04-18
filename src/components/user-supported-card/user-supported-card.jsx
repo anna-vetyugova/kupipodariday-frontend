@@ -12,7 +12,7 @@ export const UserSupportedCard = ({
 }) => {
   return (
     <article className={`${styles.content} ${extraClass}`}>
-      <img className={styles.img} src={img} />
+      <img className={styles.img} src={img} alt=''/>
       <div className={`ml-8 ${styles.data_name_box}`}>
         <p
           className={`text text_type_small text_color_primary mb-2 ${styles.label}`}
@@ -20,7 +20,7 @@ export const UserSupportedCard = ({
           Имя
         </p>
         <NavLink
-          to="/user"
+          to={`/users/${name}`}
           className={`text text_type_main text_color_primary ${styles.link}`}
         >
           {`${name} ${"\u{2197}"}`}
