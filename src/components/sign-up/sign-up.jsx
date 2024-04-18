@@ -49,11 +49,9 @@ export const SignUp = ({ extraClass = "" }) => {
   }, [step, userData]);
 
   const onChangeInput = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
     setUserData({
       ...userData,
-      [name]: value,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -77,13 +75,9 @@ export const SignUp = ({ extraClass = "" }) => {
       }
 
       try {
-        const { access_token } = await loginUser(
-          userData.username,
-          userData.password
-        );
-        if (access_token) {
+        const { accessToken } = await loginUser(userData.email, userData.password);
+        if (accessToken) {
           const userDto = await getOwnUser();
-          console.log(userDto);
 
           if (userDto.id) {
             setUser({ ...userDto });
@@ -159,8 +153,8 @@ const StepOne = ({ onChangeInput, data }) => {
         value={data.username}
         onChange={onChangeInput}
         extraClass="mb-16"
-        required={true}
         maxLength={MAXIMUM_USERNAME_LENGTH}
+        required
       />
       <Input
         name="email"
@@ -171,7 +165,7 @@ const StepOne = ({ onChangeInput, data }) => {
         value={data.email}
         onChange={onChangeInput}
         extraClass="mb-16"
-        required={true}
+        required
       />
       <Input
         name="password"
@@ -182,7 +176,7 @@ const StepOne = ({ onChangeInput, data }) => {
         value={data.password}
         onChange={onChangeInput}
         minLength={MINIMUM_PASSWORD_LENGTH}
-        required={true}
+        required
       />
     </>
   );

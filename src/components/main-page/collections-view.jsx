@@ -71,7 +71,7 @@ export const CollectionsView = ({ url, ownWishes }) => {
               name={card.id}
               to={`${url}/collections/${card.id}`}
               style={{
-                backgroundImage: `url(${card.image})`,
+                backgroundImage: `url(${card.cover})`,
               }}
             >
               <h3
@@ -146,17 +146,13 @@ const CollectionAddModal = ({
     e.preventDefault();
     errorMessage && setErrorMessage("");
 
-    const { name, image } = collectionData;
-    const itemsId = Object.entries(collectionData.wishes).map(([key, val]) => {
-      if (val) {
-        return +key;
-      }
-    });
+    const { name, cover, wishes } = collectionData;
+    const wishIds = Object.keys(wishes);
 
-    addCollection({ name, image, itemsId })
+    addCollection({ name, cover, wishIds })
       .then((res) => {
-        const { name, image, id, owner } = res;
-        setCollectionsList([...collectionsList, { name, image, id, owner }]);
+        const { name, cover, id, owner } = res;
+        setCollectionsList([...collectionsList, { name, cover, id, owner }]);
         onClose();
       })
       .catch((err) => {
@@ -213,7 +209,7 @@ const CollectionAddModal = ({
         <Input
           type="url"
           extraClass="mb-12"
-          name="image"
+          name="cover"
           label="Ссылка на изображение"
           onChange={onFormChange}
           placeholder="Укажите ссылку"

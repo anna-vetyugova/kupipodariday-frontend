@@ -138,7 +138,7 @@ const GiftAddModal = ({ onClose }) => {
     setGiftData({
       ...giftData,
       [e.target.name]:
-        e.target.name === "price" ? parseInt(e.target.value) : e.target.value,
+        e.target.name === "price" ? parseFloat(e.target.value) : e.target.value,
     });
   };
 
@@ -193,6 +193,7 @@ const GiftAddModal = ({ onClose }) => {
           placeholder="Укажите стоимость"
           required
           min={0}
+          step={0.01}
         />
         <Button
           type="submit"

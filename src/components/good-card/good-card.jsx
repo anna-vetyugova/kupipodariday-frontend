@@ -10,8 +10,8 @@ import styles from "./good-card.module.css";
 export const GoodCard = ({
   id,
   isOwn = false,
-  price = 0,
-  name = "",
+  price,
+  name,
   current,
   img,
   onClick,
@@ -30,7 +30,7 @@ export const GoodCard = ({
       onClick={onClick}
     >
       <Link to={`/gift/${id}`} className={styles.img_box}>
-        <img className={styles.img} src={img} alt="Фото товара." />
+        <img className={styles.img} src={img} alt={name} />
       </Link>
       <div className={styles.data_box}>
         <p
