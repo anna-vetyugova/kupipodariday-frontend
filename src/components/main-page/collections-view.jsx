@@ -147,9 +147,9 @@ const CollectionAddModal = ({
     errorMessage && setErrorMessage("");
 
     const { name, cover, wishes } = collectionData;
-    const items = Object.keys(wishes);
+    const wishIds = Object.keys(wishes);
 
-    addCollection({ name, cover, items })
+    addCollection({ name, cover, wishIds })
       .then((res) => {
         const { name, cover, id, owner } = res;
         setCollectionsList([...collectionsList, { name, cover, id, owner }]);
